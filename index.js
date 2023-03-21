@@ -15,13 +15,13 @@ document.addEventListener('click', function(e){
 
 //When the data attribute it grabbed, check which object matches the uuid and increment the likes
 function handleLikeClick(tweetId){
-    tweetsData.forEach(item => {
-        if(item.uuid === tweetId){
-            const targetTweetObj = item //Saving the object that matches the uuid
-            targetTweetObj.likes++
-            console.log(targetTweetObj)
-        }
-    })
+    const targetTweetObj = tweetsData.filter(item => {
+        return item.uuid === tweetId
+    })[0]
+
+    targetTweetObj.isLiked ? targetTweetObj.likes-- : targetTweetObj.likes++
+    targetTweetObj.isLiked = !targetTweetObj.isLiked
+    render()
 }
 
 function getFeedHtml(){
