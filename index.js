@@ -14,6 +14,9 @@ document.addEventListener('click', function(e){
     else if(e.target.dataset.retweet){
         handleRetweetClick(e.target.dataset.retweet)
     }
+    else if(e.target.dataset.reply){
+        handleReplyClick(e.target.dataset.reply)
+    }
 })
 
 //When the data attribute it grabbed, check which object matches the uuid and increment the likes
@@ -35,6 +38,10 @@ function handleRetweetClick(tweetId) {
     targetTweetObj.isRetweeted ? targetTweetObj.retweets-- : targetTweetObj.retweets++
     targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted
     render()
+}
+
+function handleReplyClick(replyId){
+    document.getElementById(`replies-${replyId}`).classList.toggle('hidden')
 }
 
 function getFeedHtml(){
