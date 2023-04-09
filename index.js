@@ -1,5 +1,7 @@
 import { tweetsData } from './data.js'
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 const tweetInput = document.getElementById('tweet-input')
+
 
 //Take the uuid of the tweet that is being clicked on by identifying the data attribute
 document.addEventListener('click', function(e){
@@ -43,7 +45,16 @@ function handleReplyClick(replyId){
 }
 
 function handleTweetBtnClick() {
-    console.log(tweetInput.value)
+    tweetsData.unshift({
+        handle: `@Scrimba`,
+        profilePic: `scrimbalogo.png`,
+        likes: 0,
+        retweets: 0,
+        tweetText: tweetInput.value,
+        replies: [],
+        isLiked: false,
+        isRetweeted: false,
+        uuid: uuidv4()})
 }
 
 function getFeedHtml(){
